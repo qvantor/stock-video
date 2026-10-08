@@ -1,0 +1,37 @@
+{
+  "platform": "shutterstock",
+  "label": "Shutterstock",
+  "lastVerified": "2026-10-08",
+  "verified": false,
+  "source": "Shutterstock contributor CSV template (Filename, Description, Keywords, Categories, Editorial); footage category list (photo-only categories such as Parks/Outdoor are rejected for video)",
+  "header": ["Filename", "Description", "Keywords", "Categories", "Editorial"],
+  "limits": {
+    "descriptionMax": 200,
+    "keywordsMax": 50,
+    "keywordsMin": 7,
+    "minDurationSec": 5,
+    "maxDurationSec": 60,
+    "maxFileSizeBytes": 4294967296
+  },
+  "categories": [
+    "Animals/Wildlife",
+    "Art",
+    "Backgrounds/Textures",
+    "Buildings/Landmarks",
+    "Business/Finance",
+    "Education",
+    "Food and drink",
+    "Health care",
+    "Holidays",
+    "Industrial",
+    "Nature",
+    "Objects",
+    "People",
+    "Religion",
+    "Science",
+    "Signs/Symbols",
+    "Sports/Recreation",
+    "Technology",
+    "Transportation"
+  ]
+}

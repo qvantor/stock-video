@@ -1,0 +1,41 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compileOnSave": false,
+  "files": [],
+  "references": [
+    {
+      "path": "./libs/shared/contracts"
+    },
+    {
+      "path": "./libs/api/video-analysis"
+    },
+    {
+      "path": "./libs/api/export-pipeline"
+    },
+    {
+      "path": "./libs/api/stock-csv"
+    },
+    {
+      "path": "./libs/api/llm"
+    },
+    {
+      "path": "./libs/api/tech-analysis"
+    },
+    {
+      "path": "./libs/api/geo"
+    },
+    {
+      "path": "./libs/api/ffmpeg"
+    },
+    {
+      "path": "./libs/web/timeline"
+    },
+    {
+      "path": "./apps/api"
+    },
+    {
+      "path": "./apps/web"
+    }
+  ],
+  "compilerOptions": {}
+}

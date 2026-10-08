@@ -1,0 +1,1 @@
+ALTER TABLE `videos` ADD `reviewed` integer DEFAULT false NOT NULL;

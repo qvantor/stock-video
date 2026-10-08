@@ -1,0 +1,59 @@
+name: stock-video-editor
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: docker/api.Dockerfile
+    ports:
+      - '${API_PORT:-3333}:3333'
+    environment:
+      DATA_DIR: /data
+      # Shown in the UI instead of the container path.
+      DATA_DIR_HOST: ${DATA_DIR_HOST:-${PWD}/data}
+      DB_PATH: /var/lib/dfs/app.sqlite
+      HOST: 0.0.0.0
+      PORT: '3333'
+      QUEUE_CONCURRENCY: ${QUEUE_CONCURRENCY:-1}
+      LOG_LEVEL: ${LOG_LEVEL:-info}
+      # Ollama on the host machine (stage 2 metadata generation).
+      OLLAMA_URL: ${OLLAMA_URL:-http://host.docker.internal:11434}
+    volumes:
+      - .:/app
+      - ${DATA_DIR_HOST:-./data}:/data
+      - dbdata:/var/lib/dfs
+      - pnpm-store:/pnpm/store
+      - nx-cache:/app/.nx
+      - node_modules:/app/node_modules
+      - nm-api:/app/apps/api/node_modules
+      - nm-web:/app/apps/web/node_modules
+      - nm-contracts:/app/libs/shared/contracts/node_modules
+      - nm-video-analysis:/app/libs/api/video-analysis/node_modules
+      - nm-timeline:/app/libs/web/timeline/node_modules
+      - nm-ffmpeg:/app/libs/api/ffmpeg/node_modules
+      - nm-geo:/app/libs/api/geo/node_modules
+      - nm-tech-analysis:/app/libs/api/tech-analysis/node_modules
+      - nm-llm:/app/libs/api/llm/node_modules
+      - nm-stock-csv:/app/libs/api/stock-csv/node_modules
+      - nm-export-pipeline:/app/libs/api/export-pipeline/node_modules
+    extra_hosts:
+      # Lets the container reach Ollama running on the host (Linux; Docker Desktop has it built in).
+      - 'host.docker.internal:host-gateway'
+    init: true
+
+volumes:
+  dbdata:
+  nx-cache:
+  pnpm-store:
+  node_modules:
+  nm-api:
+  nm-web:
+  nm-contracts:
+  nm-video-analysis:
+  nm-timeline:
+  nm-ffmpeg:
+  nm-geo:
+  nm-tech-analysis:
+  nm-llm:
+  nm-stock-csv:
+  nm-export-pipeline:

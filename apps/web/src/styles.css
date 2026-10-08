@@ -1,0 +1,26 @@
+@import 'tailwindcss';
+@source '../../../libs/web/timeline/src';
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  @apply bg-neutral-950 text-neutral-200 antialiased;
+  font-family:
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    'Segoe UI',
+    sans-serif;
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}

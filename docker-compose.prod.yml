@@ -1,0 +1,41 @@
+name: stock-video-editor-prod
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: docker/prod.Dockerfile
+      target: api
+    environment:
+      # Shown in the UI instead of the container path.
+      - DATA_DIR_HOST=${PROD_DATA_DIR:-${PWD}/data-prod}
+      - QUEUE_CONCURRENCY=${QUEUE_CONCURRENCY:-1}
+      - LOG_LEVEL=${LOG_LEVEL:-info}
+      # Ollama on the host machine (stage 2 metadata generation).
+      - OLLAMA_URL=${OLLAMA_URL:-http://host.docker.internal:11434}
+      # Passed through only when set on the host.
+      - OLLAMA_MODEL
+    volumes:
+      # Separate from the dev ./data: each stack has its own DB, sharing files would confuse cleanup.
+      - ${PROD_DATA_DIR:-./data-prod}:/data
+      - dbdata:/var/lib/dfs
+    extra_hosts:
+      # Lets the container reach Ollama running on the host (Linux; Docker Desktop has it built in).
+      - 'host.docker.internal:host-gateway'
+    init: true
+    restart: unless-stopped
+
+  web:
+    build:
+      context: .
+      dockerfile: docker/prod.Dockerfile
+      target: web
+    ports:
+      - '${WEB_PORT:-8080}:80'
+    depends_on:
+      api:
+        condition: service_healthy
+    restart: unless-stopped
+
+volumes:
+  dbdata:

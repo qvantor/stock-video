@@ -1,0 +1,34 @@
+{
+  "platform": "pond5",
+  "label": "Pond5",
+  "lastVerified": "2026-10-08",
+  "verified": false,
+  "source": "Pond5 contributor metadata CSV (column order as in the Pond5 CSV template)",
+  "header": [
+    "originalfilename",
+    "title",
+    "description",
+    "keywords",
+    "city",
+    "region",
+    "country",
+    "specifysource",
+    "containsaudio",
+    "release",
+    "copyright",
+    "price",
+    "pricelarge",
+    "editorial",
+    "datecreated"
+  ],
+  "limits": {
+    "titleMax": 80,
+    "descriptionMax": 2000,
+    "keywordsMin": 5,
+    "keywordsMax": 50,
+    "minDurationSec": 5,
+    "maxDurationSec": 600,
+    "maxFileSizeBytes": 10737418240
+  },
+  "forbiddenCharacters": "&åñéß®©§çäøü\"'()\\/?@%"
+}

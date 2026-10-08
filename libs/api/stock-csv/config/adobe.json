@@ -1,0 +1,39 @@
+{
+  "platform": "adobe",
+  "label": "Adobe Stock",
+  "lastVerified": "2026-10-07",
+  "verified": false,
+  "source": "Adobe Stock contributor CSV upload help (Filename, Title, Keywords, Category, Releases)",
+  "header": ["Filename", "Title", "Keywords", "Category", "Releases"],
+  "limits": {
+    "titleMax": 70,
+    "keywordsMax": 50,
+    "keywordsMin": 5,
+    "minDurationSec": 5,
+    "maxDurationSec": 60,
+    "maxFileSizeBytes": 4187593113
+  },
+  "categories": [
+    { "id": 1, "label": "Animals" },
+    { "id": 2, "label": "Buildings and Architecture" },
+    { "id": 3, "label": "Business" },
+    { "id": 4, "label": "Drinks" },
+    { "id": 5, "label": "The Environment" },
+    { "id": 6, "label": "States of Mind" },
+    { "id": 7, "label": "Food" },
+    { "id": 8, "label": "Graphic Resources" },
+    { "id": 9, "label": "Hobbies and Leisure" },
+    { "id": 10, "label": "Industry" },
+    { "id": 11, "label": "Landscapes" },
+    { "id": 12, "label": "Lifestyle" },
+    { "id": 13, "label": "People" },
+    { "id": 14, "label": "Plants and Flowers" },
+    { "id": 15, "label": "Culture and Religion" },
+    { "id": 16, "label": "Science" },
+    { "id": 17, "label": "Social Issues" },
+    { "id": 18, "label": "Sports" },
+    { "id": 19, "label": "Technology" },
+    { "id": 20, "label": "Transport" },
+    { "id": 21, "label": "Travel" }
+  ]
+}

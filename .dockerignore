@@ -1,0 +1,13 @@
+node_modules
+**/node_modules
+data
+**/dist
+.nx
+.pnpm-store
+.git
+.idea
+.vscode
+.DS_Store
+**/out-tsc
+**/test-output
+data-prod

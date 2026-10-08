@@ -1,0 +1,123 @@
+{
+  "name": "@dfs/api",
+  "version": "0.0.1",
+  "private": true,
+  "nx": {
+    "name": "api",
+    "targets": {
+      "build": {
+        "executor": "@nx/esbuild:esbuild",
+        "outputs": [
+          "{options.outputPath}"
+        ],
+        "defaultConfiguration": "production",
+        "options": {
+          "platform": "node",
+          "outputPath": "apps/api/dist",
+          "format": [
+            "esm"
+          ],
+          "bundle": true,
+          "thirdParty": false,
+          "excludeFromExternal": [
+            "@dfs/contracts",
+            "@dfs/video-analysis",
+            "@dfs/ffmpeg",
+            "@dfs/geo",
+            "@dfs/tech-analysis",
+            "@dfs/llm",
+            "@dfs/stock-csv",
+            "@dfs/export-pipeline"
+          ],
+          "main": "apps/api/src/main.ts",
+          "tsConfig": "apps/api/tsconfig.app.json",
+          "assets": [
+            {
+              "input": "apps/api/drizzle",
+              "glob": "**/*",
+              "output": "drizzle"
+            },
+            {
+              "input": "libs/api/llm/prompts",
+              "glob": "**/*",
+              "output": "prompts"
+            },
+            {
+              "input": "libs/api/stock-csv/config",
+              "glob": "*.json",
+              "output": "stock-config"
+            }
+          ],
+          "esbuildOptions": {
+            "sourcemap": true,
+            "outExtension": {
+              ".js": ".js"
+            }
+          },
+          "deleteOutputPath": true,
+          "skipTypeCheck": true,
+          "declaration": false
+        },
+        "configurations": {
+          "development": {},
+          "production": {
+            "esbuildOptions": {
+              "sourcemap": false,
+              "outExtension": {
+                ".js": ".js"
+              }
+            }
+          }
+        }
+      },
+      "serve": {
+        "continuous": true,
+        "executor": "@nx/js:node",
+        "defaultConfiguration": "development",
+        "dependsOn": [
+          "build"
+        ],
+        "options": {
+          "buildTarget": "api:build",
+          "runBuildTargetDependencies": false
+        },
+        "configurations": {
+          "development": {
+            "buildTarget": "api:build:development"
+          },
+          "production": {
+            "buildTarget": "api:build:production"
+          }
+        }
+      }
+    }
+  },
+  "dependencies": {
+    "@dfs/contracts": "workspace:*",
+    "@dfs/export-pipeline": "workspace:*",
+    "@dfs/ffmpeg": "workspace:*",
+    "@dfs/geo": "workspace:*",
+    "@dfs/llm": "workspace:*",
+    "@dfs/stock-csv": "workspace:*",
+    "@dfs/tech-analysis": "workspace:*",
+    "@dfs/video-analysis": "workspace:*",
+    "@fastify/send": "^4.1.1",
+    "@photostructure/tz-lookup": "^11.7.0",
+    "@techstark/opencv-js": "5.0.0-release.1",
+    "@tus/file-store": "^2.1.1",
+    "@tus/server": "^2.4.5",
+    "archiver": "^7.0.1",
+    "better-sqlite3": "^13.0.3",
+    "csv-stringify": "^6.9.0",
+    "drizzle-orm": "^0.45.3",
+    "fastify": "~5.12.5",
+    "fastify-type-provider-zod": "^7.0.0",
+    "p-queue": "^9.3.3",
+    "suncalc": "^2.1.1",
+    "zod": "^4.6.5"
+  },
+  "type": "module",
+  "scripts": {
+    "db:generate": "drizzle-kit generate --config drizzle.config.ts"
+  }
+}

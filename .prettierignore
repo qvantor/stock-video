@@ -1,0 +1,10 @@
+# Add files here to ignore them from prettier formatting
+/dist
+/coverage
+/.nx/cache
+/.nx/workspace-data
+.nx/self-healing
+
+# Generated files
+pnpm-lock.yaml
+/apps/api/drizzle/meta
